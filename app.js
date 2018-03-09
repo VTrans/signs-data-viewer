@@ -1,3 +1,5 @@
+var signLayer = {}; //global namespace to be more accessible to UI-driven post-load events.
+
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -12,7 +14,7 @@ require([
     "esri/layers/VectorTileLayer",
 	"esri/layers/FeatureLayer",
     "dojo/domReady!"
-  ], function(Map, MapView, FeatureLayer, VectorTileLayer) {
+  ], function(Map, MapView, VectorTileLayer, FeatureLayer) {
 
     var map = new Map({
       basemap: "osm"
@@ -29,4 +31,11 @@ require([
             url: "mapillary.json"
           });
     map.add(mapillary);
+	
+	signLayer = new FeatureLayer("http://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
+		mode: FeatureLayer.MODE_ONDEMAND,
+		outFields: ["*"],
+		id: 'signs'
+	});
+	map.add(signLayer);
 });
