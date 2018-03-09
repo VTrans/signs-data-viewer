@@ -1,4 +1,6 @@
-var signLayer = {}; //global namespace to be more accessible to UI-driven post-load events.
+var signLayer, //global namespace to be more accessible to UI-driven post-load events.
+	map,
+	Geometry;
 
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -21,9 +23,10 @@ require([
 	  MapView,
 	  VectorTileLayer,
 	  FeatureLayer,
-	  geometry,
+	  Geometry,
 	  urlUtils
   ) {
+	  window['Geometry'] = Geometry;
 
     //if there are url params zoom to location
          var coords, zoomLevel;
@@ -38,12 +41,12 @@ require([
 
 
           var zoomLevel = parseInt(urlObject.query.zoomLevel);
-          var point = geometry.geographicToWebMercator(new esri.geometry.Point(lon,lat));
+          var point = Geometry.geographicToWebMercator(new esri.geometry.Point(lon,lat));
 
           map.centerAndZoom(point,zoomLevel);
         }
 
-    var map = new Map({
+    map = new Map({
       basemap: "osm"
     });
 
