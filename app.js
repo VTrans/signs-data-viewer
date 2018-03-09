@@ -17,17 +17,17 @@ require([
     "esri/core/urlUtils",
     "dojo/domReady!"
   ], function(
-	  Map, 
-	  MapView, 
-	  VectorTileLayer, 
+	  Map,
+	  MapView,
+	  VectorTileLayer,
 	  FeatureLayer,
-	  geometry, 
+	  geometry,
 	  urlUtils
   ) {
 
     //if there are url params zoom to location
          var coords, zoomLevel;
-         var urlObject = esri.urlToObject(document.location.href);
+         var urlObject = urlUtils.urlToObject(document.location.href);
 
 
         if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
