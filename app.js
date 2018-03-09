@@ -27,33 +27,26 @@ require([
     webMercatorUtils
   ) {
 
-    //if there are url params zoom to location
-         var coords, zoomLevel;
-         var urlObject = urlUtils.urlToObject(document.location.href);
-
-
-        if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
-          var coords = urlObject.query.coords.split(',');
-
-          var lon = parseFloat(coords[0]);
-          var lat = parseFloat(coords[1]);
-
-
-          var zoomLevel = parseInt(urlObject.query.zoomLevel);
-          var point = webMercatorUtils.geographicToWebMercator(new geometry.Point(lon,lat));
-
-          map.centerAndZoom(point,zoomLevel);
-        }
-
     var map = new Map({
       basemap: "osm"
     });
 
+    //if there are url params zoom to location
+         var coords, zoomLevel;
+         var urlObject = urlUtils.urlToObject(document.location.href);
+
+        if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
+          var coords = urlObject.query.coords.split(',');
+          var lon = parseFloat(coords[0]);
+          var lat = parseFloat(coords[1]);
+          var zoomLevel = parseInt(urlObject.query.zoomLevel);
+        }
+
     var view = new MapView({
       container: "map",
       map: map,
-      center: [-72.6,44],
-      zoom: 8
+      center: [lon,lat],
+      zoom: zoomLevel
     });
 
     var mapillary = new VectorTileLayer({
