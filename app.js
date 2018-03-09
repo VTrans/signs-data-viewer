@@ -10,8 +10,9 @@ require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/VectorTileLayer",
+	"esri/layers/FeatureLayer",
     "dojo/domReady!"
-  ], function(Map, MapView, VectorTileLayer) {
+  ], function(Map, MapView, FeatureLayer, VectorTileLayer) {
 
     var map = new Map({
       basemap: "osm"
