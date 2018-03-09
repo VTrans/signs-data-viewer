@@ -12,12 +12,18 @@ require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/VectorTileLayer",
-	  "esri/layers/FeatureLayer",
+	"esri/layers/FeatureLayer",
     "esri/geometry",
     "esri/core/urlUtils",
     "dojo/domReady!"
-  ], function(Map, MapView, VectorTileLayer, FeatureLayer,
-  geometry, urlUtils) {
+  ], function(
+	  Map, 
+	  MapView, 
+	  VectorTileLayer, 
+	  FeatureLayer,
+	  geometry, 
+	  urlUtils
+  ) {
 
     //if there are url params zoom to location
          var coords, zoomLevel;
