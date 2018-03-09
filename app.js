@@ -32,7 +32,7 @@ require([
 
 
           var zoomLevel = parseInt(urlObject.query.zoomLevel);
-          var point = esri.geometry.geographicToWebMercator(new esri.geometry.Point(lon,lat));
+          var point = geometry.geographicToWebMercator(new esri.geometry.Point(lon,lat));
 
           map.centerAndZoom(point,zoomLevel);
         }
