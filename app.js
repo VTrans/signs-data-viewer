@@ -15,6 +15,7 @@ require([
 	"esri/layers/FeatureLayer",
     "esri/geometry",
     "esri/core/urlUtils",
+    "esri/geometry/support/webMercatorUtils",
     "dojo/domReady!"
   ], function(
 	  Map,
@@ -22,7 +23,8 @@ require([
 	  VectorTileLayer,
 	  FeatureLayer,
 	  geometry,
-	  urlUtils
+	  urlUtils,
+    webMercatorUtils
   ) {
 
     //if there are url params zoom to location
@@ -38,7 +40,7 @@ require([
 
 
           var zoomLevel = parseInt(urlObject.query.zoomLevel);
-          var point = geometry.geographicToWebMercator(new esri.geometry.Point(lon,lat));
+          var point = webMercatorUtils.geographicToWebMercator(new geometry.Point(lon,lat));
 
           map.centerAndZoom(point,zoomLevel);
         }
