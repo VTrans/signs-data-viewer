@@ -3,7 +3,6 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-  <script type="text/javascript" src="app.js"></script>
   <title>Mapillary + Esri</title>
   <style>
   #info{
@@ -35,33 +34,8 @@
   }
   </style>
   <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css" />
-  <script src="https://js.arcgis.com/4.1/"></script>
-  <script>
-  require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/layers/VectorTileLayer",
-    "dojo/domReady!"
-  ], function(Map, MapView, VectorTileLayer) {
-
-    var map = new Map({
-      basemap: "osm"
-    });
-
-    var view = new MapView({
-      container: "map",
-      map: map,
-      center: [-72.6,44],
-      zoom: 8
-    });
-
-    var mapillary = new VectorTileLayer({
-            url: "mapillary.json"
-          });
-    map.add(mapillary);
-        });
-
-  </script>
+  <script src="https://js.arcgis.com/4.1/"></script>  
+  <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
   <div id="map"></div>
