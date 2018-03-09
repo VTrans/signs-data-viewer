@@ -65,7 +65,7 @@ require([
 
 	signLayer = new FeatureLayer("http://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
 		mode: FeatureLayer.MODE_ONDEMAND,
-		outFields: ["*"],
+		outFields: ["ID","MUTCDCode"],
 		id: 'signs'
 	});
 	map.add(signLayer);
