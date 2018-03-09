@@ -69,3 +69,34 @@ require([
 	});
 	map.add(signLayer);
 });
+
+
+
+
+function identifyFeatures(evt) {	
+	var extent = getExtent(evt.mapPoint, 20);
+	var graphics = [];
+	var layers = map.getLayersVisibleAtScale();
+
+	for (var i = 0; i<layers.length; i++) {
+		if (!layers[i].graphics || layers[i].graphics.length < 1 || !layers[i].visible) continue;
+		
+		var features = layers[i].graphics.filter(function(graphic) {
+			return extent.intersects(graphic.geometry);
+		});
+		graphics = graphics.concat(features);
+	}
+	
+	
+	return graphics;
+}
+
+function getExtent(point, tol) {
+	var pixelWidth = map.extent.getWidth() / map.width;
+	var toleraceInMapCoords = tol * pixelWidth;
+	return new Geometry.Extent( point.x - toleraceInMapCoords,
+		   point.y - toleraceInMapCoords,
+		   point.x + toleraceInMapCoords,
+		   point.y + toleraceInMapCoords,
+		   map.spatialReference );
+}
