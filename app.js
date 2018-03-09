@@ -29,10 +29,7 @@ require([
     webMercatorUtils
   ) {
 	  window['Geometry'] = Geometry;
-
-    var map = new Map({
-      basemap: "osm"
-    });
+	
     var lon = -72.6
     var lat = 44
     var zoomLevel = 8
@@ -69,15 +66,24 @@ require([
 		id: 'signs'
 	});
 	map.add(signLayer);
-});
 
-
-
+	map.on('click', function(evt) { 
+		handlePopup(evt); 
+		return false; 
+	}); 
+}); 
+ 
+ 
+function handlePopup(evt) { 
+  var graphics = identifyFeatures(evt); 
+  var contents = getPopupContents(graphics); 
+  console.log(contents); 
+} 
 
 function identifyFeatures(evt) {
 	var extent = getExtent(evt.mapPoint, 20);
 	var graphics = [];
-	var layers = map.getLayersVisibleAtScale();
+	var layers = map.layers.items;
 
 	for (var i = 0; i<layers.length; i++) {
 		if (!layers[i].graphics || layers[i].graphics.length < 1 || !layers[i].visible) continue;
