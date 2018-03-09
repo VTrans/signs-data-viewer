@@ -33,6 +33,13 @@ require([
     var map = new Map({
       basemap: "osm"
     });
+	
+	var view = new MapView({
+      container: "map",
+      map: map,
+      center: [lon,lat],
+      zoom: zoomLevel
+    });
 
     //if there are url params zoom to location
          var coords, zoomLevel;
@@ -45,17 +52,6 @@ require([
           var zoomLevel = parseInt(urlObject.query.zoomLevel);
         }
 
-    map = new Map({
-      basemap: "osm"
-    });
-
-    var view = new MapView({
-      container: "map",
-      map: map,
-      center: [lon,lat],
-      zoom: zoomLevel
-    });
-
     var mapillary = new VectorTileLayer({
             url: "mapillary.json"
           });
@@ -67,8 +63,19 @@ require([
 		id: 'signs'
 	});
 	map.add(signLayer);
+	
+	map.on('click', function(evt) {
+		handlePopup(evt);
+		return false;
+	});
 });
 
+
+function handlePopup(evt) {
+	var graphics = identifyFeatures(evt);
+	var contents = getPopupContents(graphics);
+	console.log(contents);
+}
 
 
 
