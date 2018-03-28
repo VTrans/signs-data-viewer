@@ -117,6 +117,15 @@ function getExtent(point, tol) {
 function buildPopup(lat, lon, signs) {
 	console.log(lat, lon, signs);
 	
+	
+	//clean up old .signInfos
+	var signInfos = document.getElementsByClassName('signInfo');
+
+	while(signInfos[0]) {
+		signInfos[0].parentNode.removeChild(signInfos[0]);
+	}	
+	//build new signinfos
+	
 	for (var i = 0; i < signs.length; i++) {
 		var geo = signs[i].geometry,
 			attr = signs[i].attributes,
@@ -142,14 +151,27 @@ function buildPopup(lat, lon, signs) {
 		
 		copyButton = document.createElement("BUTTON");
 		copyButton.innerHTML = "Copy";
-		copyButton.onclick = function () {
-			copy(JSON.stringify(data));
-			return false;
-		}
+		copyButton.data = JSON.stringify(data);
+		copyButton.onclick = function() {
+			copy(this.data);
+		};
 		
 		signInfo.append(signName);
-		signInfo.append(copyButton);
+		signName.append(copyButton);
 		
 		document.getElementById('info').append(signInfo);
 	}
+}
+
+
+function copy(target) {
+    // https://dzone.com/articles/cross-browser-javascript-copy-and-paste
+    var textArea = document.createElement('textarea');
+    textArea.setAttribute
+        ('style','width:1px;border:0;opacity:0;');
+    document.body.appendChild(textArea);
+    textArea.value = target;
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
 }
