@@ -24,11 +24,12 @@ require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/VectorTileLayer",
-		"esri/layers/FeatureLayer",
+	"esri/layers/FeatureLayer",
     "esri/geometry",
     "esri/core/urlUtils",
     "esri/geometry/support/webMercatorUtils",
-		"esri/geometry/Extent",
+	"esri/geometry/Extent",
+	"esri/tasks/support/Query",
     "dojo/domReady!"
   ], function(
 	  Map,
@@ -38,10 +39,12 @@ require([
 	  Geometry,
 	  urlUtils,
 	  webMercatorUtils,
-	  Extent
+	  Extent,
+	  Query
   ) {
 	  window['Geometry'] = Geometry;
 	  window['Extent'] = Extent;
+	  window['Query'] = Query;
 
     var lon = -72.6
     var lat = 44
@@ -87,35 +90,30 @@ require([
 });
 
 function handlePopup(evt) {
-  var graphics = identifyFeatures(evt); console.log(graphics);
-  var contents = getPopupContents(graphics);
-  console.log(contents);
-}
-
-function identifyFeatures(evt) {
+	var latitude = evt.mapPoint.latitude,
+		longitude = evt.mapPoint.longitude;
+	
 	var extent = getExtent(evt.mapPoint, 20);
-	var graphics = [];
-	var layers = view.layers.items;
-
-	for (var i = 0; i<layers.length; i++) {
-		if (!layers[i].view.graphics || layers[i].view.graphics.items.length < 1 || !layers[i].view.visible) continue;
-
-		var features = layers[i].graphics.filter(function(graphic) {
-			return extent.intersects(graphic.geometry);
+	
+	var query = new Query();
+	query.geometry = extent;
+	query.spatialRelationship = "intersects";
+	
+	console.log(query)
+	view.whenLayerView(signLayer).then(function (signs) {
+		signs.queryFeatures(query).then(function(results) {
+			console.log(results); 
+			//call popup builder
 		});
-		graphics = graphics.concat(features);
-	}
-
-
-	return graphics;
+	});
 }
 
 function getExtent(point, tol) {
-	var pixelWidth = Extent().width / map.width;
-	var toleraceInMapCoords = tol * pixelWidth;
-	return new Geometry.Extent( point.x - toleraceInMapCoords,
-		   point.y - toleraceInMapCoords,
-		   point.x + toleraceInMapCoords,
-		   point.y + toleraceInMapCoords,
-		   map.spatialReference );
+	var pixelWidth = view.extent.width / view.width;
+	var toleranceInMapCoords = tol * pixelWidth;
+	return new Geometry.Extent( point.x - toleranceInMapCoords,
+		   point.y - toleranceInMapCoords,
+		   point.x + toleranceInMapCoords,
+		   point.y + toleranceInMapCoords,
+		   point.spatialReference );
 }
