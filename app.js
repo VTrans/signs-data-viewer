@@ -9,6 +9,17 @@ function getParameterByName(name) {
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function mapillaryLink(){
+	// url https://www.mapillary.com/app/?username=vtrans_row&lat=44&lng=-72&z=7.5
+	var mapillarypre = 'https://www.mapillary.com/app/?username=vtrans_row&lat='
+	var mapillary2nd = '&lng='
+	var mapillary3rd = '&z='
+
+	var mapillaryURL = mapillarypre + view.center.latitude + mapillary2nd + view.center.longitude + mapillary3rd + '17'
+	window.open(mapillaryURL, "_blank")
+
+}
+
 require([
     "esri/Map",
     "esri/views/MapView",

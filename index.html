@@ -4,13 +4,17 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
   <title>Mapillary + Esri</title>
-  <link rel="stylesheet" type="text/css" href="style.css">  
+  <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css" />
   <script src="https://js.arcgis.com/4.6/"></script>
   <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
   <div id="map"></div>
-  <div id="info"></div>
+  <div id="info">
+    <div class="mapillary">
+      <button type="button" name="button" onclick="mapillaryLink()">Mapillary</button>
+    </div>
+  </div>
 </body>
 </html>
