@@ -9,16 +9,15 @@ function getParameterByName(name) {
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-
 require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/VectorTileLayer",
-	"esri/layers/FeatureLayer",
+		"esri/layers/FeatureLayer",
     "esri/geometry",
     "esri/core/urlUtils",
     "esri/geometry/support/webMercatorUtils",
-	"esri/geometry/Extent",
+		"esri/geometry/Extent",
     "dojo/domReady!"
   ], function(
 	  Map,
@@ -75,7 +74,6 @@ require([
 		return false;
 	});
 });
-
 
 function handlePopup(evt) {
   var graphics = identifyFeatures(evt); console.log(graphics);
