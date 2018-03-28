@@ -76,7 +76,7 @@ require([
 
 	signLayer = new FeatureLayer("http://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
 		mode: FeatureLayer.MODE_ONDEMAND,
-		outFields: ["ID","MUTCDCode"],
+		outFields: ["*"],
 		id: 'signs'
 	});
 	map.add(signLayer);
@@ -116,4 +116,39 @@ function getExtent(point, tol) {
 
 function buildPopup(lat, lon, signs) {
 	console.log(lat, lon, signs);
+	
+	for (var i = 0; i < signs.length; i++) {
+		var geo = signs[i].geometry,
+			attr = signs[i].attributes,
+			data = attr,
+			name = '';
+			signInfo = document.createElement("DIV");
+		
+		signInfo.className = "signInfo";
+		signInfo.id = "sign" + attr.ID;
+		
+		data.latitude = geo.latitude;
+		data.longitude = geo.longitude;
+		
+		name += data.City.substring(0, data.City.indexOf(','));
+		name += ' ' + data.STREETNAME.substring(data.STREETNAME.indexOf(',') - 1);
+		name += ' ' + data.LaneDirection;
+		name += ' ' + data.Marker;
+		name += ' ' + data.MUTCDCode;
+		
+		signName = document.createElement("P");
+		signName.innerHTML = name;
+		
+		copyButton = document.createElement("BUTTON");
+		copyButton.innerHTML = "Copy";
+		copyButton.onclick = function () {
+			copy(JSON.stringify(data));
+			return false;
+		}
+		
+		signInfo.append(signName);
+		signInfo.append(copyButton);
+		
+		document.getElementById('info').append(signInfo);
+	}
 }
