@@ -18,6 +18,7 @@ require([
     "esri/geometry",
     "esri/core/urlUtils",
     "esri/geometry/support/webMercatorUtils",
+	"esri/geometry/Extent",
     "dojo/domReady!"
   ], function(
 	  Map,
@@ -26,9 +27,11 @@ require([
 	  FeatureLayer,
 	  Geometry,
 	  urlUtils,
-    webMercatorUtils
+	  webMercatorUtils,
+	  Extent
   ) {
 	  window['Geometry'] = Geometry;
+	  window['Extent'] = Extent;
 	
     var lon = -72.6
     var lat = 44
@@ -67,7 +70,7 @@ require([
 	});
 	map.add(signLayer);
 
-	map.on('click', function(evt) { 
+	view.on('click', function(evt) { 
 		handlePopup(evt); 
 		return false; 
 	}); 
@@ -75,7 +78,7 @@ require([
  
  
 function handlePopup(evt) { 
-  var graphics = identifyFeatures(evt); 
+  var graphics = identifyFeatures(evt); console.log(graphics);
   var contents = getPopupContents(graphics); 
   console.log(contents); 
 } 
@@ -99,7 +102,7 @@ function identifyFeatures(evt) {
 }
 
 function getExtent(point, tol) {
-	var pixelWidth = map.extent.getWidth() / map.width;
+	var pixelWidth = Extent().width / map.width;
 	var toleraceInMapCoords = tol * pixelWidth;
 	return new Geometry.Extent( point.x - toleraceInMapCoords,
 		   point.y - toleraceInMapCoords,
