@@ -8,12 +8,16 @@ function getParameterByName(name) {
 }
 
 function mapillaryLink(){
+	var data = document.getElementsByClassName('mapillary')[0].data || view.center,
+		lat = data.latitude,
+		lon = data.longitude;
+	
 	// url https://www.mapillary.com/app/?username=vtrans_row&lat=44&lng=-72&z=7.5
 	var mapillarypre = 'https://www.mapillary.com/app/?username=vtrans_row&lat='
 	var mapillary2nd = '&lng='
 	var mapillary3rd = '&z='
 
-	var mapillaryURL = mapillarypre + view.center.latitude + mapillary2nd + view.center.longitude + mapillary3rd + '17'
+	var mapillaryURL = mapillarypre + lat + mapillary2nd + lon + mapillary3rd + '17'
 	window.open(mapillaryURL, "_blank")
 
 }
@@ -48,7 +52,7 @@ require([
     var lat = 44
     var zoomLevel = 8
     //if there are url params zoom to location
-         var coords, zoomLevel;
+         var coords;
          var urlObject = urlUtils.urlToObject(document.location.href);
 				 // for dev ?coords=-72.683117,44.296882&zoomLevel=18
         if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
@@ -115,8 +119,12 @@ function getExtent(point, tol) {
 }
 
 function buildPopup(lat, lon, signs) {
-	console.log(lat, lon, signs);
+	var coordinates = {"latitude": lat, "longitude":lon};
 	
+	document.getElementsByClassName('mapillary')[0].data = coordinates;
+	document.getElementsByClassName('coordinateCopier')[0].data = coordinates;
+	
+	document.getElementsByClassName('coordinates')[0].innerHTML = Math.round(lat*1000)/1000 + ', ' + Math.round(lon*1000)/1000;
 	
 	//clean up old .signInfos
 	var signInfos = document.getElementsByClassName('signInfo');
@@ -161,6 +169,16 @@ function buildPopup(lat, lon, signs) {
 		
 		document.getElementById('info').append(signInfo);
 	}
+}
+
+function copyCoordinates() {	
+	var data = document.getElementsByClassName('coordinateCopier')[0].data || view.center,
+		lat = data.latitude,
+		lon = data.longitude;
+		
+		coordinates = {"latitude": lat, "longitude":lon};
+	
+	copy(JSON.stringify(coordinates));		
 }
 
 
