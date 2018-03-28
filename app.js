@@ -130,11 +130,12 @@ function buildPopup(lat, lon, signs) {
 		data.latitude = geo.latitude;
 		data.longitude = geo.longitude;
 		
-		name += data.City.substring(0, data.City.indexOf(','));
-		name += ' ' + data.STREETNAME.substring(data.STREETNAME.indexOf(',') - 1);
-		name += ' ' + data.LaneDirection;
-		name += ' ' + data.Marker;
-		name += ' ' + data.MUTCDCode;
+		name += data.MUTCDCode;
+		name += ' at ' + data.Marker;
+		name += ' on ' + data.STREETNAME.substring(data.STREETNAME.indexOf(',') + 1);
+		name += ' ' + data.LaneDirection + ' ';
+		
+		
 		
 		signName = document.createElement("P");
 		signName.innerHTML = name;
