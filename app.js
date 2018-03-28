@@ -1,6 +1,4 @@
-var signLayer, //global namespace to be more accessible to UI-driven post-load events.
-	map,
-	Geometry;
+var signLayer; //global namespace to be more accessible to UI-driven post-load events.
 
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -99,11 +97,9 @@ function handlePopup(evt) {
 	query.geometry = extent;
 	query.spatialRelationship = "intersects";
 	
-	console.log(query)
 	view.whenLayerView(signLayer).then(function (signs) {
 		signs.queryFeatures(query).then(function(results) {
-			console.log(results); 
-			//call popup builder
+			buildPopup(latitude, longitude, results);
 		});
 	});
 }
@@ -116,4 +112,8 @@ function getExtent(point, tol) {
 		   point.x + toleranceInMapCoords,
 		   point.y + toleranceInMapCoords,
 		   point.spatialReference );
+}
+
+function buildPopup(lat, lon, signs) {
+	console.log(lat, lon, signs);
 }
