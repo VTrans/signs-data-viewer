@@ -50,7 +50,7 @@ require([
       basemap: "hybrid"
     });
 
-    var view = new MapView({
+    window['view'] = new MapView({
       container: "map",
       map: map,
       center: [lon,lat],
@@ -84,10 +84,10 @@ function handlePopup(evt) {
 function identifyFeatures(evt) {
 	var extent = getExtent(evt.mapPoint, 20);
 	var graphics = [];
-	var layers = map.layers.items;
+	var layers = view.layers.items;
 
 	for (var i = 0; i<layers.length; i++) {
-		if (!layers[i].graphics || layers[i].graphics.length < 1 || !layers[i].visible) continue;
+		if (!layers[i].view.graphics || layers[i].view.graphics.items.length < 1 || !layers[i].view.visible) continue;
 
 		var features = layers[i].graphics.filter(function(graphic) {
 			return extent.intersects(graphic.geometry);
