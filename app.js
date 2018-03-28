@@ -29,14 +29,14 @@ require([
     webMercatorUtils
   ) {
 	  window['Geometry'] = Geometry;
-	
+
     var lon = -72.6
     var lat = 44
     var zoomLevel = 8
     //if there are url params zoom to location
          var coords, zoomLevel;
          var urlObject = urlUtils.urlToObject(document.location.href);
-
+				 // for dev ?coords=-72.683117,44.296882&zoomLevel=18
         if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
           var coords = urlObject.query.coords.split(',');
           lon = parseFloat(coords[0]);
@@ -45,7 +45,7 @@ require([
         }
 
     map = new Map({
-      basemap: "osm"
+      basemap: "hybrid"
     });
 
     var view = new MapView({
@@ -67,18 +67,18 @@ require([
 	});
 	map.add(signLayer);
 
-	map.on('click', function(evt) { 
-		handlePopup(evt); 
-		return false; 
-	}); 
-}); 
- 
- 
-function handlePopup(evt) { 
-  var graphics = identifyFeatures(evt); 
-  var contents = getPopupContents(graphics); 
-  console.log(contents); 
-} 
+	map.on('click', function(evt) {
+		handlePopup(evt);
+		return false;
+	});
+});
+
+
+function handlePopup(evt) {
+  var graphics = identifyFeatures(evt);
+  var contents = getPopupContents(graphics);
+  console.log(contents);
+}
 
 function identifyFeatures(evt) {
 	var extent = getExtent(evt.mapPoint, 20);
