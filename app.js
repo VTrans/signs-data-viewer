@@ -35,16 +35,15 @@ require([
     });
     var lon = -72.6
     var lat = 44
-    var zoomLevel = 8
+    var zoom = 8
     //if there are url params zoom to location
-         var coords, zoomLevel;
+         var lon, lat, zoom;
          var urlObject = urlUtils.urlToObject(document.location.href);
 
-        if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
-          var coords = urlObject.query.coords.split(',');
-          lon = parseFloat(coords[0]);
-          lat = parseFloat(coords[1]);
-          zoomLevel = parseInt(urlObject.query.zoomLevel);
+        if(urlObject.query && urlObject.query.lon && urlObject.query.lat && urlObject.query.zoom){
+          lon = urlObject.query.lon
+          lat = urlObject.query.lat
+          zoom = parseInt(urlObject.query.zoom);
         }
 
     map = new Map({
@@ -55,15 +54,15 @@ require([
       container: "map",
       map: map,
       center: [lon,lat],
-      zoom: zoomLevel
+      zoom: zoom
     });
 
-    var mapillary = new VectorTileLayer({
-            url: "mapillary.json"
-          });
-    map.add(mapillary);
+    // var mapillary = new VectorTileLayer({
+    //         url: "mapillary.json"
+    //       });
+    // map.add(mapillary);
 
-	signLayer = new FeatureLayer("http://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
+	signLayer = new FeatureLayer("https://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
 		mode: FeatureLayer.MODE_ONDEMAND,
 		outFields: ["ID","MUTCDCode"],
 		id: 'signs'
