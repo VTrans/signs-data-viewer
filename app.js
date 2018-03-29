@@ -16,8 +16,9 @@ function mapillaryLink(){
 	var mapillarypre = 'https://www.mapillary.com/app/?username=vtrans_row&lat='
 	var mapillary2nd = '&lng='
 	var mapillary3rd = '&z='
+	var mapillarySigns = '&signs=true'
 
-	var mapillaryURL = mapillarypre + lat + mapillary2nd + lon + mapillary3rd + '17'
+	var mapillaryURL = mapillarypre + lat + mapillary2nd + lon + mapillary3rd + '17' + mapillarySigns
 	window.open(mapillaryURL, "_blank")
 
 }
