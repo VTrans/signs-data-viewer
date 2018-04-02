@@ -33,6 +33,7 @@ require([
     "esri/geometry/support/webMercatorUtils",
 		"esri/geometry/Extent",
 		"esri/tasks/support/Query",
+		"esri/WebMap",
     "dojo/domReady!"
   ], function(
 	  Map,
@@ -43,7 +44,8 @@ require([
 	  urlUtils,
 	  webMercatorUtils,
 	  Extent,
-	  Query
+	  Query,
+	  WebMap
   ) {
 	  window['Geometry'] = Geometry;
 	  window['Extent'] = Extent;
@@ -62,10 +64,12 @@ require([
           lat = parseFloat(coords[1]);
           zoomLevel = parseInt(urlObject.query.zoomLevel);
         }
-
-    map = new Map({
-      basemap: "hybrid"
-    });
+	
+	map = new WebMap({
+        portalItem: { // autocasts as new PortalItem()
+          id: "59e5cc2f095e4947b63709c3d0434ae9"
+        }
+      });
 
     window['view'] = new MapView({
       container: "map",
