@@ -75,7 +75,8 @@ require([
       container: "map",
       map: map,
       center: [lon,lat],
-      zoom: zoom
+      zoom: zoom,
+	  maxZoom:0
     });
 
     // var mapillary = new VectorTileLayer({
