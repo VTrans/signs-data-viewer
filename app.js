@@ -80,63 +80,83 @@ require([
 	view.constraints = {
 		minScale:10000,
 		maxScale:1250,
-	  lods:[
-		{
-		  level: 10,
-		  resolution: 152.874056570411,
-		  scale: 577790.554289
-		},
-		{
-		  level: 11,
-		  resolution: 76.4370282850732,
-		  scale: 288895.277144
-		},
-		{
-		  level: 12,
-		  resolution: 38.2185141425366,
-		  scale: 144447.638572
-		},
-		{
-		  level: 13,
-		  resolution: 19.1092570712683,
-		  scale: 72223.819286
-		},
-		{
-		  level: 14,
-		  resolution: 9.55462853563415,
-		  scale: 36111.909643
-		},
-		{
-		  level: 15,
-		  resolution: 4.77731426794937,
-		  scale: 18055.954822
-		},
-		{
-		  level: 16,
-		  resolution: 2.38865713397468,
-		  scale: 9027.977411
-		},
-		{
-		  level: 17,
-		  resolution: 1.19432856685505,
-		  scale: 4513.988705
-		},
-		{
-		  level: 18,
-		  resolution: 0.597164283559817,
-		  scale: 2256.994353
-		},
-		{
-		  level: 19,
-		  resolution: 0.33072982812,
-		  scale: 1250
-		},
-		{
-		  level: 20,
-		  resolution: 0.17859410718,
-		  scale: 675
-		}
-	  ]
+	  lods: [
+		   /*{
+			"level": 0,
+			"resolution": 1587.5031750063501,
+			"scale": 6000000
+		   },
+		   {
+			"level": 1,
+			"resolution": 793.7515875031751,
+			"scale": 3000000
+		   },
+		   {
+			"level": 2,
+			"resolution": 396.87579375158754,
+			"scale": 1500000
+		   },
+		   {
+			"level": 3,
+			"resolution": 330.72982812632296,
+			"scale": 1250000
+		   },
+		   {
+			"level": 4,
+			"resolution": 264.5838625010584,
+			"scale": 1000000
+		   },
+		   {
+			"level": 5,
+			"resolution": 198.43789687579377,
+			"scale": 750000
+		   },
+		   {
+			"level": 6,
+			"resolution": 132.2919312505292,
+			"scale": 500000
+		   },
+		   {
+			"level": 7,
+			"resolution": 66.1459656252646,
+			"scale": 250000
+		   },
+		   {
+			"level": 8,
+			"resolution": 26.458386250105836,
+			"scale": 100000
+		   },*/
+		   {
+			"level": 9,
+			"resolution": 13.229193125052918,
+			"scale": 50000
+		   },
+		   {
+			"level": 10,
+			"resolution": 6.614596562526459,
+			"scale": 25000
+		   },
+		   {
+			"level": 11,
+			"resolution": 2.6458386250105836,
+			"scale": 10000
+		   },
+		   {
+			"level": 12,
+			"resolution": 1.3229193125052918,
+			"scale": 5000
+		   },
+		   {
+			"level": 13,
+			"resolution": 0.6614596562526459,
+			"scale": 2500
+		   },
+		   {
+			"level": 14,
+			"resolution": 0.33072982812632296,
+			"scale": 1250
+		   }
+		  ]
 	}
 
     // var mapillary = new VectorTileLayer({
