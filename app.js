@@ -55,16 +55,16 @@ require([
     var lat = 44
     var zoom = 8
     //if there are url params zoom to location
-         var coords;
+         var lon, lat, zoom;
          var urlObject = urlUtils.urlToObject(document.location.href);
-				 // for dev ?coords=-72.683117,44.296882&zoomLevel=18
-        if(urlObject.query && urlObject.query.coords && urlObject.query.zoomLevel){
+				 // for dev ?lon=-72.683117&lat=44.296882&zoomLevel=18
+        if(urlObject.query && urlObject.query.lon && urlObject.query.lat && urlObject.query.zoomLevel){
           var coords = urlObject.query.coords.split(',');
-          lon = parseFloat(coords[0]);
-          lat = parseFloat(coords[1]);
-          zoomLevel = parseInt(urlObject.query.zoomLevel);
+          lon = parseFloat(urlObject.query.lon);
+          lat = parseFloat(urlObject.query.lat);
+          zoomLevel = parseInt(urlObject.query.zoom);
         }
-	
+
 	map = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "59e5cc2f095e4947b63709c3d0434ae9"
