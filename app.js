@@ -59,7 +59,6 @@ require([
          var urlObject = urlUtils.urlToObject(document.location.href);
 				 // for dev ?lon=-72.683117&lat=44.296882&zoomLevel=18
         if(urlObject.query && urlObject.query.lon && urlObject.query.lat && urlObject.query.zoomLevel){
-          var coords = urlObject.query.coords.split(',');
           lon = parseFloat(urlObject.query.lon);
           lat = parseFloat(urlObject.query.lat);
           zoomLevel = parseInt(urlObject.query.zoom);
@@ -77,11 +76,11 @@ require([
       center: [lon,lat],
       zoom: zoom
     });
-	
+
 	view.constraints = {
 		minScale:10000,
 		maxScale:1250,
-	  lods:[ 
+	  lods:[
 		{
 		  level: 10,
 		  resolution: 152.874056570411,
