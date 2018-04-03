@@ -81,51 +81,6 @@ require([
 		minScale:10000,
 		maxScale:1250,
 	  lods: [
-		   /*{
-			"level": 0,
-			"resolution": 1587.5031750063501,
-			"scale": 6000000
-		   },
-		   {
-			"level": 1,
-			"resolution": 793.7515875031751,
-			"scale": 3000000
-		   },
-		   {
-			"level": 2,
-			"resolution": 396.87579375158754,
-			"scale": 1500000
-		   },
-		   {
-			"level": 3,
-			"resolution": 330.72982812632296,
-			"scale": 1250000
-		   },
-		   {
-			"level": 4,
-			"resolution": 264.5838625010584,
-			"scale": 1000000
-		   },
-		   {
-			"level": 5,
-			"resolution": 198.43789687579377,
-			"scale": 750000
-		   },
-		   {
-			"level": 6,
-			"resolution": 132.2919312505292,
-			"scale": 500000
-		   },
-		   {
-			"level": 7,
-			"resolution": 66.1459656252646,
-			"scale": 250000
-		   },
-		   {
-			"level": 8,
-			"resolution": 26.458386250105836,
-			"scale": 100000
-		   },*/
 		   {
 			"level": 9,
 			"resolution": 13.229193125052918,
