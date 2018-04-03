@@ -123,18 +123,8 @@ require([
         },
         {
           level: 19,
-          resolution: 0.298582141647617,
-          scale: 1128.497176
-        },
-        {
-          level: 20,
-          resolution: 0.1492910708238085,
-          scale: 564.248587
-        },
-        {
-          level: 21,
-          resolution: 0.0746455354119043,
-          scale: 282.1242935
+          resolution: 0.33072982812,
+          scale: 1250
         }
       ]
     });
