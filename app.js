@@ -165,7 +165,7 @@ function buildPopup(lat, lon, signs) {
 	document.getElementsByClassName('mapillary')[0].data = coordinates;
 	document.getElementsByClassName('coordinateCopier')[0].data = coordinates;
 
-	document.getElementsByClassName('coordinates')[0].innerHTML = Math.round(lat*1000)/1000 + ', ' + Math.round(lon*1000)/1000;
+	document.getElementsByClassName('coordinates')[0].innerHTML = Math.round(lat*10000)/10000 + ', ' + Math.round(lon*10000)/10000;
 
 	//clean up old .signInfos
 	var signInfos = document.getElementsByClassName('signInfo');
