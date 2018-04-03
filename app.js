@@ -130,6 +130,11 @@ require([
 		  level: 19,
 		  resolution: 0.33072982812,
 		  scale: 1250
+		},
+		{
+		  level: 20,
+		  resolution: 0.17859410718,
+		  scale: 675
 		}
 	  ]
 	}
