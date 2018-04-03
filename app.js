@@ -80,7 +80,7 @@ require([
 	
 	view.constraints = {
 		minScale:10000,
-		maxScale:1250,
+		maxScale:0,
 	  lods:[ 
 		{
 		  level: 10,
