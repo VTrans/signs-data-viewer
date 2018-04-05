@@ -61,7 +61,7 @@ require([
         if(urlObject.query && urlObject.query.lon && urlObject.query.lat && urlObject.query.zoomLevel){
           lon = parseFloat(urlObject.query.lon);
           lat = parseFloat(urlObject.query.lat);
-          zoomLevel = parseInt(urlObject.query.zoom);
+          zoom = parseInt(urlObject.query.zoomLevel);
         }
 
 	map = new WebMap({
