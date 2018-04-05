@@ -34,6 +34,7 @@ require([
 		"esri/geometry/Extent",
 		"esri/tasks/support/Query",
 		"esri/WebMap",
+    "esri/Graphic",
     "dojo/domReady!"
   ], function(
 	  Map,
@@ -45,7 +46,8 @@ require([
 	  webMercatorUtils,
 	  Extent,
 	  Query,
-	  WebMap
+	  WebMap,
+    Graphic
   ) {
 	  window['Geometry'] = Geometry;
 	  window['Extent'] = Extent;
@@ -76,6 +78,25 @@ require([
       center: [lon,lat],
       zoom: zoom
     });
+
+    var pointMarker = {
+        type: "simple-marker",
+        size: 6,
+        color: [255, 255, 0, 1]
+    };
+
+    var pointGeometry = {
+      type: "point",
+      longitude: lon,
+      latitude: lat
+    }
+
+    var pointGraphic = new Graphic({
+      geometry: pointGeometry,
+      symbol: pointMarker
+    });
+
+    view.graphics.addMany([pointGraphic])
 
 	view.constraints = {
 		minScale:10000,
