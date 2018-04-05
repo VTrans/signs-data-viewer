@@ -98,43 +98,6 @@ require([
 
     view.graphics.addMany([pointGraphic])
 
-	view.constraints = {
-		minScale:10000,
-		maxScale:1250,
-	  lods: [
-		   {
-			"level": 9,
-			"resolution": 13.229193125052918,
-			"scale": 50000
-		   },
-		   {
-			"level": 10,
-			"resolution": 6.614596562526459,
-			"scale": 25000
-		   },
-		   {
-			"level": 11,
-			"resolution": 2.6458386250105836,
-			"scale": 10000
-		   },
-		   {
-			"level": 12,
-			"resolution": 1.3229193125052918,
-			"scale": 5000
-		   },
-		   {
-			"level": 13,
-			"resolution": 0.6614596562526459,
-			"scale": 2500
-		   },
-		   {
-			"level": 14,
-			"resolution": 0.33072982812632296,
-			"scale": 1250
-		   }
-		  ]
-	}
-
     // var mapillary = new VectorTileLayer({
     //         url: "mapillary.json"
     //       });
