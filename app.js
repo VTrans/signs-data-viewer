@@ -80,7 +80,7 @@ require([
       zoom: zoom
     });
     
-    var basemapToggle = new BasemapToggle({
+    window['basemapToggle'] = new BasemapToggle({
         view: view,  // The view that provides access to the map's "streets" basemap
         nextBasemap: "hybrid"  // Allows for toggling to the "hybrid" basemap
     });
