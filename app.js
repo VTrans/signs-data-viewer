@@ -36,6 +36,7 @@ require([
     "esri/WebMap",
     "esri/Graphic",
     "esri/widgets/BasemapToggle",
+    "esri/Basemap",
     "dojo/domReady!"
 ], function(
         Map,
@@ -49,7 +50,8 @@ require([
         Query,
         WebMap,
         Graphic,
-        BasemapToggle
+        BasemapToggle,
+        Basemap
 ) {
       window['Geometry'] = Geometry;
       window['Extent'] = Extent;
@@ -79,9 +81,17 @@ require([
       zoom: zoom
     });
     
+    var VCGIBasemap = new Basemap({
+        title: "VCGI Basemap",
+        id: "VCGIBasemap",
+        portalItem: {
+            id: "a2a876693c324770bcb1666cfce1496c" 
+        } 
+    });
+    
     window['basemapToggle'] = new BasemapToggle({
         view: view,  // The view that provides access to the map's "streets" basemap
-        nextBasemap: "hybrid"  // Allows for toggling to the "hybrid" basemap
+        nextBasemap: VCGIBasemap // Allows for toggling to the "hybrid" basemap
     });
 
     var pointMarker = {
