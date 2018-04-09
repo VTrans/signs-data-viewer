@@ -70,7 +70,7 @@ require([
         portalItem: { // autocasts as new PortalItem()
           id: "59e5cc2f095e4947b63709c3d0434ae9"
         }
-      });
+    });
 
     window['view'] = new MapView({
       container: "map",
