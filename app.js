@@ -35,7 +35,7 @@ require([
     "esri/tasks/support/Query",
     "esri/WebMap",
     "esri/Graphic",
-    "esri/widgets/BasemapToggle"]
+    "esri/widgets/BasemapToggle",
     "dojo/domReady!"
 ], function(
         Map,
