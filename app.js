@@ -69,8 +69,7 @@ require([
         }
 
     map = new Map({ 
-        basemap: "streets" ,
-        ground: "world-elevation"
+        basemap: "streets"
     }); 
 
     window['view'] = new MapView({
