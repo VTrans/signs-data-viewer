@@ -56,6 +56,7 @@ require([
       window['Geometry'] = Geometry;
       window['Extent'] = Extent;
       window['Query'] = Query;
+      window['Graphic'] = Graphic;
 
     var lon = -72.6
     var lat = 44
@@ -94,7 +95,7 @@ require([
         nextBasemap: VCGIBasemap // Allows for toggling to the "hybrid" basemap
     });
 
-    var pointMarker = {
+    window['pointMarker'] = {
         type: "simple-marker",
         size: 6,
         color: [255, 255, 0, 1]
@@ -111,12 +112,7 @@ require([
       symbol: pointMarker
     });
 
-    view.graphics.addMany([pointGraphic])
-
-    // var mapillary = new VectorTileLayer({
-    //         url: "mapillary.json"
-    //       });
-    // map.add(mapillary);
+    view.graphics.add(pointGraphic);
 
     signLayer = new FeatureLayer("https://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
         mode: FeatureLayer.MODE_ONDEMAND,
@@ -159,6 +155,7 @@ function getExtent(point, tol) {
 }
 
 function buildPopup(lat, lon, signs) {
+    drawClickPoint(lat, lon);
     var coordinates = {"latitude": lat, "longitude":lon};
 
     document.getElementsByClassName('mapillary')[0].data = coordinates;
@@ -209,6 +206,19 @@ function buildPopup(lat, lon, signs) {
 
         document.getElementById('info').append(signInfo);
     }
+}
+
+function drawClickPoint(lat, lon) {
+    view.graphics.removeAll();
+    
+    view.graphics.add(new Graphic({
+        geometry: {
+            type: "point",
+            longitude: lon,
+            latitude: lat 
+        },
+        symbol: pointMarker
+    }));
 }
 
 function copyCoordinates() {
