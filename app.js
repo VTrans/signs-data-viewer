@@ -66,11 +66,9 @@ require([
           zoom = parseInt(urlObject.query.zoomLevel);
         }
 
-	map = new WebMap({
-        portalItem: { // autocasts as new PortalItem()
-          id: "59e5cc2f095e4947b63709c3d0434ae9"
-        }
-    });
+    map = new Map({ 
+        basemap: "streets" 
+    }); 
 
     window['view'] = new MapView({
       container: "map",
