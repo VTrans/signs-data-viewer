@@ -69,7 +69,8 @@ require([
         }
 
     map = new Map({ 
-        basemap: "streets" 
+        basemap: "streets" ,
+        ground: "world-elevation"
     }); 
 
     window['view'] = new MapView({
@@ -77,6 +78,11 @@ require([
       map: map,
       center: [lon,lat],
       zoom: zoom
+    });
+    
+    var basemapToggle = new BasemapToggle({
+        view: view,  // The view that provides access to the map's "streets" basemap
+        nextBasemap: "hybrid"  // Allows for toggling to the "hybrid" basemap
     });
 
     var pointMarker = {
