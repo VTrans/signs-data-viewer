@@ -70,9 +70,16 @@ require([
           lat = parseFloat(urlObject.query.lat);
           zoom = parseInt(urlObject.query.zoomLevel);
         }
-
+	var VCGIBasemap = new Basemap({
+        title: "VCGI Basemap",
+        id: "VCGIBasemap",
+        portalItem: {
+            id: "a2a876693c324770bcb1666cfce1496c" 
+        } 
+    });
+	
     map = new Map({ 
-        basemap: "streets"
+        basemap: VCGIBasemap
     }); 
 
     window['view'] = new MapView({
@@ -82,17 +89,11 @@ require([
       zoom: zoom
     });
     
-    var VCGIBasemap = new Basemap({
-        title: "VCGI Basemap",
-        id: "VCGIBasemap",
-        portalItem: {
-            id: "a2a876693c324770bcb1666cfce1496c" 
-        } 
-    });
+    
     
     window['basemapToggle'] = new BasemapToggle({
         view: view,  // The view that provides access to the map's "streets" basemap
-        nextBasemap: VCGIBasemap // Allows for toggling to the "hybrid" basemap
+        nextBasemap: "streets" // Allows for toggling to the "hybrid" basemap
     });
 
     window['pointMarker'] = {
