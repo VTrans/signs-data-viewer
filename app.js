@@ -115,7 +115,7 @@ require([
 
     view.graphics.add(pointGraphic);
 
-    signLayer = new FeatureLayer("https://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols_Temp/FeatureServer/0", {
+    signLayer = new FeatureLayer("https://maps.vtrans.vermont.gov/arcgis/rest/services/AMP/Sign_Symbols/FeatureServer/0", {
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         id: 'signs'
